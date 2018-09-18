@@ -9,7 +9,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ArraysClassTest {
+public class OracleArraysClassTest {
 
     private final int[] sampleArray = {6, 4, 1, 8, 3, 9, 7, 4, 2};
     private final int minOfSampleArray = 1;
@@ -91,7 +91,7 @@ public class ArraysClassTest {
     }
 
     @Test
-    public void updateElementOnList() {
+    public void updateElementOnConvertedList() {
         Arrays.sort(sampleArray);
         Integer[] boxedSampleArray = Arrays.stream( sampleArray ).boxed().toArray( Integer[]::new );
         List<Integer> integerList = Arrays.asList(boxedSampleArray);
