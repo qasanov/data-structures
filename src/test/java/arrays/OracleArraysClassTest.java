@@ -3,9 +3,7 @@ package arrays;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -97,5 +95,16 @@ public class OracleArraysClassTest {
         List<Integer> integerList = Arrays.asList(boxedSampleArray);
         integerList.set(0, -1);
         assertThat(integerList.get(0)).isNotEqualTo(minOfSampleArray);
+    }
+
+    @Test(expected = java.util.ConcurrentModificationException.class)
+    public void failFast() {
+        Integer[] boxedSampleArray = Arrays.stream( sampleArray ).boxed().toArray( Integer[]::new );
+        ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(boxedSampleArray));
+        Iterator<Integer> iterator = numbers.iterator();
+        while (iterator.hasNext()) {
+            Integer number = iterator.next();
+            numbers.add(50);
+        }
     }
 }
