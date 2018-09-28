@@ -1,8 +1,9 @@
 package com.qasanov.ds.linkedlist;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class SinglyLinkedList<E> {
+public class SinglyLinkedList<E> implements Iterable<E> {
 
     private static class Node<E> {
         E item;
@@ -87,5 +88,29 @@ public class SinglyLinkedList<E> {
         tail = null;
     }
 
+    @Override
+    public Iterator<E> iterator() {
+        Iterator<E> it = new Iterator<E>() {
 
+            private Node<E> currentNode = head;
+
+            @Override
+            public boolean hasNext() {
+                return currentNode!=null;
+            }
+
+            @Override
+            public E next() {
+                E element = currentNode.item;
+                currentNode = currentNode.next;
+                return element;
+            }
+
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException();
+            }
+        };
+        return it;
+    }
 }

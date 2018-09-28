@@ -2,7 +2,6 @@ package linkedlist;
 
 import com.qasanov.ds.linkedlist.SinglyLinkedList;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -95,5 +94,15 @@ public class SinglyLinkedListTest {
         linkedList.insert(new Integer(0));
         linkedList.remove();
         assertThat(linkedList.size()).isEqualTo(0);
+    }
+
+    @Test
+    public void iterateLinkedList() {
+        linkedList.insert(new Integer(1));
+        int count = 0;
+        for (Integer integer : linkedList) {
+            count++;
+        }
+        assertThat(count).isEqualTo(linkedList.size());
     }
 }
